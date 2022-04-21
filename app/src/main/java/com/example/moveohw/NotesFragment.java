@@ -36,6 +36,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -57,7 +59,7 @@ private Context mContext;
     private FirebaseAuth mAuth;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user;
-    ImageButton addnotebtn;
+    ExtendedFloatingActionButton addnotebtn;
     LocationManager locationManager;
     Double latitude, longitude;
     public static final String MYPREF = "MyPref";
@@ -118,6 +120,10 @@ private Context mContext;
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
                                 Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                editor.putString("ID", documentReference.getId());
+                                editor.putBoolean("mode",true);
+                                editor.commit();
+                                ((Home)getActivity()).navigateFrag(new Note(),false);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -127,35 +133,8 @@ private Context mContext;
                             }
                         });
 
-                Query query = db.collection("notes").document(user.getUid())
-                        .collection("mynotes").orderBy("date", Query.Direction.DESCENDING);
-                if(pref.getInt("sorting",0)==1) {
-                    System.out.println("old to new");
-                     query = db.collection("notes").document(user.getUid())
-                            .collection("mynotes").orderBy("date", Query.Direction.ASCENDING);
-                }
 
-                query.get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        Log.d("TAG", document.getId() + " => " + document.getData());
-                                        editor.putString("ID", document.getId());
-                                        editor.putBoolean("mode",true);
-                                        editor.commit();
-                                        break;
-                                    }
 
-                                } else {
-                                    Log.w("TAG", "Error getting documents.", task.getException());
-
-                                }
-                            }
-                        });
-
-                ((Home)getActivity()).navigateFrag(new Note(),false);
 
 
             }
@@ -169,8 +148,14 @@ private Context mContext;
         recyclerView.setAdapter(noteAdapter);
 
         String now = ISO_8601_FORMAT.format(new Date());
+
 Query query=db.collection("notes").document(user.getUid())
         .collection("mynotes").orderBy("date",Query.Direction.DESCENDING);
+        if(pref.getInt("sorting",0)==1) {
+
+            query=db.collection("notes").document(user.getUid())
+                    .collection("mynotes").orderBy("date",Query.Direction.ASCENDING);
+        }
 
         query.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

@@ -91,26 +91,6 @@ public class RegisterFragment extends Fragment {
 
                                 }
                             });
-//                    Map<String, Object> user = new HashMap<>();
-//
-//                    user.put("email",username.getText().toString().trim() );
-//                    user.put("password", password.getText().toString().trim());
-//
-//// Add a new document with a generated ID
-//                    db.collection("users")
-//                            .add(user)
-//                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                                @Override
-//                                public void onSuccess(DocumentReference documentReference) {
-//                                    Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId());
-//                                }
-//                            })
-//                            .addOnFailureListener(new OnFailureListener() {
-//                                @Override
-//                                public void onFailure(@NonNull Exception e) {
-//                                    Log.w("TAG", "Error adding document", e);
-//                                }
-//                            });
 
                     ((MainActivity)getActivity()).navigateFrag(new LoginFragment(),false);
                 }

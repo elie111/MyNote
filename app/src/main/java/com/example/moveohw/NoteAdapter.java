@@ -81,17 +81,7 @@ String itemid;
 
         pref = ctx.getSharedPreferences(MYPREF,0);
         SharedPreferences.Editor editor = pref.edit();
-//        holder.title.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Fragment note = new Note();
-//
-//                itemid=noteItemArrayList.get(holder.getAdapterPosition()).getid();
-//                editor.putString("ID",itemid);
-//                editor.commit();
-//                System.out.println("adapter id is "+pref.getString("ID",""));
-//              //  ((Home)getCtxA()).navigateFrag(new Note(),false);
-//            }});
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,7 +109,7 @@ String itemid;
         Date ndate;
         LinearLayout ntext_linearlayout;
         TextView title;
-        EditText datetxt;
+        TextView datetxt;
         Double latitude;
         Double longitude;
         public ViewHolder(@NonNull View itemView) {

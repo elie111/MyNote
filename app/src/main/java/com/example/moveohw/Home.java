@@ -40,13 +40,7 @@ public class Home extends AppCompatActivity implements NavigateFragments {
         toast.show();
         navigationView = findViewById(R.id.navibarAdminMain);
 
-        final FragmentManager fragmentManager = getSupportFragmentManager();
 
-        // define your fragments here
-
-        final Fragment notesFragment = new NotesFragment();
-        final Fragment mapFragment = new MapsFragment();
-        final Fragment note = new Note();
         navigateFrag(new NotesFragment(),false);
         navigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -56,28 +50,19 @@ public class Home extends AppCompatActivity implements NavigateFragments {
 
                         switch (item.getItemId()) {
                             case R.id.bottomNavigationUserMenuId:
-//                                Intent intent=new Intent(AdminMain.this, AdminMain.class);
-//
-//                                startActivity(intent);
-//                                Fragment myFragment = (Fragment) getSupportFragmentManager().findFragmentByTag("MY_FRAGMENT");
-//                                if (myFragment != null && myFragment.isVisible()) {
-//                                    fragmentManager.beginTransaction().remove(myFragment).commitAllowingStateLoss();
-//                                }
-//                                fragmentManager.beginTransaction().replace(R.id.HomeLayout,notesFragment , "MY_FRAGMENT")
-//                                        .commitAllowingStateLoss();
+
+
                                 navigateFrag(new NotesFragment(),false);
                                 break;
                             case R.id.bottomNavigationLeadersMenuId:
-//                                fragmentManager.beginTransaction().replace(R.id.HomeLayout,mapFragment , "MY_FRAGMENT")
-//                                        .commitAllowingStateLoss();
+
                                 navigateFrag(new MapsFragment(),false);
 
 
 
                                 break;
                             case R.id.bottomNavigationMoreMenuId:
-//                                fragmentManager.beginTransaction().replace(R.id.adminlayout, fragment5, "MY_FRAGMENT")
-//                                        .commitAllowingStateLoss();
+
                                 PopupMenu popup = new PopupMenu(Home.this, findViewById(R.id.bottomNavigationMoreMenuId));
                                 MenuInflater inflater = popup.getMenuInflater();
                                 inflater.inflate(R.menu.mymenu, popup.getMenu());

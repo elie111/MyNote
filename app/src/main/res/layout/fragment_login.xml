@@ -30,7 +30,8 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LogIn"
+            android:text="Sign In"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:textColorLink="@color/black"
@@ -115,7 +116,7 @@
             android:id="@+id/regeisterbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Regestir"
+            android:text="sign up"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/loginbtn"
             app:layout_constraintRight_toRightOf="parent"

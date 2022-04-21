@@ -30,7 +30,9 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="Sign Up"
+            android:textStyle="bold"
+
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:textColorLink="@color/black"
@@ -136,20 +138,20 @@
             android:id="@+id/regeisterbtn2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Regestir"
+            android:text="sign up"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/loginbtn2"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/loginbtn2"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/loginbtn2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LogIn"
+            android:text="already a user?"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="@id/regeisterbtn2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/regeisterbtn2"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

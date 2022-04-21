@@ -11,9 +11,10 @@
 
     <RelativeLayout
         android:id="@+id/upperlayoutnot"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_width="421dp"
+        android:layout_height="58dp"
 
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
@@ -25,26 +26,27 @@
 
         <TextView
             android:id="@+id/notestxtid"
-            android:layout_width="293dp"
-            android:layout_height="49dp"
+            android:layout_width="152dp"
+            android:layout_height="57dp"
             android:layout_gravity="center"
-            android:layout_marginEnd="0dp"
-            android:layout_toStartOf="@+id/addnotebtnid"
             android:gravity="center"
-            android:text="your notes"
+            android:text="My Notes"
             android:textColor="@color/white"
             android:textSize="30sp" />
 
-        <ImageButton
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/addnotebtnid"
-            android:layout_width="49dp"
-            android:layout_height="49dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="0dp"
-
-            android:background="@android:color/transparent"
-            android:src="@drawable/addnote"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            android:layout_width="150dp"
+            android:layout_height="56dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginStart="150dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="add note"
+            android:gravity="center"
+            android:text="add note"
+            android:textColor="@color/white"
+            app:backgroundTint="@android:color/holo_blue_light"
+            app:icon="@drawable/addnote" />
 
     </RelativeLayout>
 
@@ -67,7 +69,8 @@
             android:id="@+id/scrollViewNotifications"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:background="@drawable/myrect">
 
             <LinearLayout
                 android:id="@+id/notofocationslayout"

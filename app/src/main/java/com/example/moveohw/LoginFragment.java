@@ -61,34 +61,29 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
+                if(checkEmail(username)&&check_password(password,password)) {
                     mAuth.signInWithEmailAndPassword(username.getText().toString().trim(), password.getText().toString().trim())
                             .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
 
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         Intent myIntent = new Intent(mContext, Home.class);
                                         mContext.startActivity(myIntent);
 
-                                    }
-
-                                    else {
-                                        // If sign in fails, display a message to the user.
+                                    } else {
                                         Log.w("TAG", "signInWithEmail:failure", task.getException());
-                                        Toast.makeText(mContext, "Authentication failed.",
+                                        Toast.makeText(mContext, "Signing in failed.",
                                                 Toast.LENGTH_SHORT).show();
 
                                     }
                                 }
                             });
 
-
-
-                username.setText("");
-                password.setText("");
+                }
+                    username.setText("");
+                    password.setText("");
 
 
 

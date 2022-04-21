@@ -70,7 +70,7 @@
                         android:text="TextView"
                         android:textColor="@color/white" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/dateofnoteid"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -78,7 +78,8 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="0"
                         android:ems="10"
-                        android:textSize="10sp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
                         android:inputType="date"
                         tools:ignore="SpeakableTextPresentCheck" />
                 </LinearLayout>
