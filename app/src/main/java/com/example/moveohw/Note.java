@@ -70,6 +70,7 @@ ImageButton returnbtn,editbtn,deletebtn,gallerybtn;
     Boolean editMode=false;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user;
+    DocumentReference docref;
     LinearLayout background;
     private FirebaseAuth mAuth;
     SharedPreferences.Editor editor;
@@ -126,7 +127,7 @@ ImageButton returnbtn,editbtn,deletebtn,gallerybtn;
                     }
                 });
 
-    DocumentReference docref=db.collection("notes").document(user.getUid())
+    docref=db.collection("notes").document(user.getUid())
             .collection("mynotes").document(id);
     gallerybtn.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -138,21 +139,9 @@ ImageButton returnbtn,editbtn,deletebtn,gallerybtn;
     deletebtn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            docref.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    AlertDialog diaBox = AskOption();
-                    diaBox.show();
+            AlertDialog diaBox = AskOption();
+            diaBox.show();
 
-                    Log.d("TAG", "DocumentSnapshot successfully deleted!");
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w("TAG", "Error deleting document", e);
-                        }
-                    });
 
         }
     });
@@ -238,6 +227,21 @@ ImageButton returnbtn,editbtn,deletebtn,gallerybtn;
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
+                        docref.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+
+                                Log.d("TAG", "DocumentSnapshot successfully deleted!");
+                            }
+                        })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w("TAG", "Error deleting document", e);
+                                    }
+                                });
+
                         if(pref.getInt("mapornote",0)==1){
                             editor.putInt("mapornote",0);
                             editor.commit();

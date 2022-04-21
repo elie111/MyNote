@@ -80,7 +80,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/trashbtn"
             app:layout_constraintStart_toEndOf="@+id/headernotetxtid"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
