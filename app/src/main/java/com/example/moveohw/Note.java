@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -317,6 +318,8 @@ ImageButton returnbtn,editbtn,deletebtn,gallerybtn;
                 getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         } else {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,
+                    0, mLocationListener);
             Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (locationGPS != null) {
                 latitude = locationGPS.getLatitude();
@@ -328,4 +331,10 @@ ImageButton returnbtn,editbtn,deletebtn,gallerybtn;
             }
         }
     }
+    private final LocationListener mLocationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(final Location location) {
+            //your code here
+        }
+    };
 }
