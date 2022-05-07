@@ -81,6 +81,8 @@ ImageButton returnbtn,editbtn,deletebtn,gallerybtn;
     LinearLayout background;
     private FirebaseAuth mAuth;
     SharedPreferences.Editor editor;
+    FirebaseStorage storage=FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
 
 
 
@@ -303,6 +305,9 @@ ImageButton returnbtn,editbtn,deletebtn,gallerybtn;
                         try {
                             InputStream inputStream = getActivity().getContentResolver().openInputStream(photoUri);
                             background .setBackground(Drawable.createFromStream(inputStream, photoUri.toString() ));
+//                            StorageReference mountainsRef = storageRef.child("drawable/ic_launcher_background.xml");
+//                            storage.getReference().putStream(inputStream);
+
 
                         } catch (FileNotFoundException e) {
                             background .setBackground( getResources().getDrawable(R.drawable.notebook));
