@@ -87,7 +87,28 @@
                     android:background="@drawable/myrect"
                     android:clipToPadding="false"
                     android:scrollbars="vertical" />
+                <TextView
+                    android:id="@+id/empty_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="Create your first note" />
+
+                <ImageView
+                    android:id="@+id/empty_view_image"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+
+                    android:gravity="center"
+                    android:src="@drawable/notelogo"
+                    android:visibility="gone" />
             </LinearLayout>
+
         </ScrollView>
 
     </LinearLayout>

@@ -21,7 +21,9 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
@@ -47,6 +49,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Document;
 
@@ -71,10 +75,14 @@ ImageButton returnbtn,editbtn,deletebtn,gallerybtn;
     Boolean editMode=false;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user;
+    ConstraintLayout layout1;
+    LinearLayout layout2;
     DocumentReference docref;
     LinearLayout background;
     private FirebaseAuth mAuth;
     SharedPreferences.Editor editor;
+
+
 
 
     @Override
@@ -91,6 +99,12 @@ ImageButton returnbtn,editbtn,deletebtn,gallerybtn;
         View view = inflater.inflate(R.layout.fragment_note, container, false);
         mAuth = FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
+
+        layout1=view.findViewById(R.id.noteheaderlayoutid);
+        layout1.setBackgroundColor(pref.getInt("theme1", ContextCompat.getColor(mContext,R.color.purple_700)));
+
+        layout2=view.findViewById(R.id.notelayouttextid);
+        layout2.setBackgroundColor(pref.getInt("theme2",ContextCompat.getColor(mContext,R.color.teal_200)));
 
 
         returnbtn=view.findViewById(R.id.returnbtnid);
@@ -281,7 +295,7 @@ ImageButton returnbtn,editbtn,deletebtn,gallerybtn;
                     if (result.getResultCode() == Activity.RESULT_OK) {
 
                         Intent data = result.getData();
-                        System.out.println("entered if");
+
                         Uri photoUri =data.getData();
 
                         background=getActivity().findViewById(R.id.notelayouttextid);
@@ -289,6 +303,7 @@ ImageButton returnbtn,editbtn,deletebtn,gallerybtn;
                         try {
                             InputStream inputStream = getActivity().getContentResolver().openInputStream(photoUri);
                             background .setBackground(Drawable.createFromStream(inputStream, photoUri.toString() ));
+
                         } catch (FileNotFoundException e) {
                             background .setBackground( getResources().getDrawable(R.drawable.notebook));
 

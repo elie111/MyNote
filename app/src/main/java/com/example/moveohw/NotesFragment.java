@@ -14,6 +14,7 @@ import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.provider.Settings;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -31,6 +33,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -63,8 +67,11 @@ private Context mContext;
     ExtendedFloatingActionButton addnotebtn;
     LocationManager locationManager;
     Double latitude, longitude;
+    ConstraintLayout layout1,layout2;
     public static final String MYPREF = "MyPref";
     SharedPreferences pref;
+    private TextView emptyView;
+    private ImageView emptyimage;
     SimpleDateFormat ISO_8601_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sss'Z'");
     private static final int REQUEST_LOCATION = 1;
     int f=0;
@@ -92,9 +99,15 @@ private Context mContext;
 
 
 
+        emptyimage=view.findViewById(R.id.empty_view_image);
+        layout1=view.findViewById(R.id.fragment_notes);
+        layout1.setBackgroundColor(pref.getInt("theme1",ContextCompat.getColor(mContext,R.color.purple_700)));
 
 
+        emptyView = (TextView) view.findViewById(R.id.empty_view);
         addnotebtn=view.findViewById(R.id.addnotebtnid);
+
+        addnotebtn.setBackgroundColor(pref.getInt("theme2",ContextCompat.getColor(mContext,R.color.teal_200)));
         addnotebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,8 +175,10 @@ Query query=db.collection("notes").document(user.getUid())
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        boolean emp=true;
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                emp=false;
                                 Log.d("TAG", document.getId() + " => " + document.getData());
 
 
@@ -179,6 +194,16 @@ Query query=db.collection("notes").document(user.getUid())
 
 
 
+                            }
+                            if(emp){
+                                recyclerView.setVisibility(View.GONE);
+                                emptyView.setVisibility(View.VISIBLE);
+                                emptyimage.setVisibility(View.VISIBLE);
+                            }
+                            else{
+                                recyclerView.setVisibility(View.VISIBLE);
+                                emptyView.setVisibility(View.GONE);
+                                emptyimage.setVisibility(View.GONE);
                             }
                             noteAdapter.notifyDataSetChanged();
                         } else {
@@ -242,4 +267,5 @@ Query query=db.collection("notes").document(user.getUid())
             //your code here
         }
     };
+
 }

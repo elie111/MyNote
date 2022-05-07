@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -29,11 +30,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     ArrayList<NoteItem> noteItemArrayList;
 
-Context ctx;
+    Context ctx;
     public static final String MYPREF = "MyPref";
     SharedPreferences pref;
-int pos;
-String itemid;
+    int pos;
+    String itemid;
 
 
 
@@ -61,6 +62,7 @@ String itemid;
 
 
 
+
         return new ViewHolder(view);
     }
 
@@ -68,20 +70,23 @@ String itemid;
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        pref = ctx.getSharedPreferences(MYPREF,0);
+        SharedPreferences.Editor editor = pref.edit();
          pos=holder.getAdapterPosition();
         NoteItem noteItem = noteItemArrayList.get(position);
         itemid=noteItem.getid();
+        holder.title.setBackgroundColor(pref.getInt("theme1",ContextCompat.getColor(ctx,R.color.purple_700)));
+        holder.ntext_linearlayout.setBackgroundColor(pref.getInt("theme2", ContextCompat.getColor(ctx,R.color.teal_200)));
 
         holder.ntext.setText(noteItem.getNoteText());
         holder.ndate=noteItem.getDate();
         holder.title.setText(noteItem.getTitle());
-        SimpleDateFormat ISO_8601_FORMAT = new SimpleDateFormat("MMMM-dd\nHH:mm aa");
+        SimpleDateFormat ISO_8601_FORMAT = new SimpleDateFormat("MMMM dd\nHH:mm aa");
 
         String now = ISO_8601_FORMAT.format(noteItem.getDate());
         holder.datetxt.setText(now);
 
-        pref = ctx.getSharedPreferences(MYPREF,0);
-        SharedPreferences.Editor editor = pref.edit();
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +123,9 @@ String itemid;
 
 
             ntext = itemView.findViewById(R.id.notiText);
+
             ntext_linearlayout=(LinearLayout)itemView.findViewById(R.id.notilayoutitem);
+
             title=itemView.findViewById(R.id.titleid);
             datetxt=itemView.findViewById(R.id.dateofnoteid);
 
