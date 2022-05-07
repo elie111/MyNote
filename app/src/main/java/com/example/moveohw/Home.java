@@ -100,7 +100,7 @@ public class Home extends AppCompatActivity implements NavigateFragments {
                 });
     }
     public void navigateFrag(Fragment fragment, Boolean addToStack) {;
-        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction().replace(R.id.HomeLayout,fragment);
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction().replace(R.id.homemainlayout,fragment);
         if(addToStack){
             transaction.addToBackStack(null);
 

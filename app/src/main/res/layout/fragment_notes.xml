@@ -3,10 +3,10 @@
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_notes"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4e7fe7"
-    android:id="@+id/fragment_notes"
+    android:background="#1810AD"
     tools:context=".NotesFragment">
 
     <RelativeLayout
@@ -43,9 +43,9 @@
             android:layout_marginEnd="5dp"
             android:contentDescription="add note"
             android:gravity="center"
-            android:text="add note"
+            android:text="add"
             android:textColor="@color/white"
-            app:backgroundTint="@android:color/holo_blue_light"
+            app:backgroundTint="#81deea"
             app:icon="@drawable/addnote" />
 
     </RelativeLayout>
@@ -54,10 +54,10 @@
         android:id="@+id/innerlayoutnot"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/myrect"
         android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
+        android:background="@drawable/myrect"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -7,6 +7,17 @@
     android:id="@+id/HomeLayout"
     tools:context=".Home">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/homemainlayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/navibarAdminMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navibarAdminMain"
         android:layout_width="match_parent"
@@ -16,6 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+
         app:menu="@menu/navimenu"
         app:labelVisibilityMode="labeled"
 

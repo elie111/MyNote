@@ -75,7 +75,8 @@ String itemid;
         holder.ntext.setText(noteItem.getNoteText());
         holder.ndate=noteItem.getDate();
         holder.title.setText(noteItem.getTitle());
-        SimpleDateFormat ISO_8601_FORMAT = new SimpleDateFormat("MM-dd HH:mm ");
+        SimpleDateFormat ISO_8601_FORMAT = new SimpleDateFormat("MMMM-dd\nHH:mm aa");
+
         String now = ISO_8601_FORMAT.format(noteItem.getDate());
         holder.datetxt.setText(now);
 

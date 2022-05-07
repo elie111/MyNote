@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -79,10 +80,14 @@ public class MapsFragment extends Fragment  {
                                         Marker newmarker=
                                         googleMap.addMarker(new MarkerOptions().position(newmark).title((String) document.get("title")
                                         ).snippet((String) document.get("content")));
-                                        System.out.println("map id is "+document.getId());
                                         newmarker.setTag(counter);
+
+
+
+
                                         counter++;
                                         markersID.add(document.getId());
+
 
 
 
@@ -93,7 +98,7 @@ public class MapsFragment extends Fragment  {
 
                                 }
                                 if(boundflag==1) {
-                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(boundsbuilder.build(), 1000, 1000, 0));
+                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(boundsbuilder.build(), 500, 500, 0));
                                 }
                             } else {
                                 Log.w("TAG", "Error getting documents.", task.getException());
@@ -105,15 +110,23 @@ public class MapsFragment extends Fragment  {
             googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(Marker marker) {
-System.out.println("tag for marker is "+marker.getTag());
+
+                   marker.showInfoWindow();
+                    return false;
+                }
+            });
+            googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
                     editor.putString("ID",markersID.get((int)marker.getTag()));
                     editor.putInt("mapornote",1);
                     editor.commit();
 
                     ((Home)mContext).navigateFrag(new Note(),false);
-                    return false;
+
                 }
             });
+
 
         }
     };
@@ -141,6 +154,8 @@ System.out.println("tag for marker is "+marker.getTag());
         super.onAttach(context);
         mContext = context;
     }
+
+
 
 
 }

@@ -28,6 +28,7 @@
             app:cardCornerRadius="25dp">
 
             <LinearLayout
+                android:id="@+id/noteitemlayoutID"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -35,9 +36,9 @@
                 <TextView
                     android:id="@+id/titleid"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#37117A"
-                    android:backgroundTint="#37117A"
+                    android:layout_height="30dp"
+                    android:background="#1810AD"
+                    android:backgroundTint="#1810AD"
                     android:gravity="center"
                     android:text="title"
                     android:textColor="@color/white" />
@@ -46,7 +47,7 @@
                     android:id="@+id/notilayoutitem"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#edc967"
+                    android:background="#81deea"
                     android:orientation="horizontal">
 
 
@@ -68,19 +69,22 @@
                         android:layout_marginRight="10dp"
                         android:gravity="center"
                         android:text="TextView"
+
                         android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/dateofnoteid"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
                         android:layout_marginRight="5dp"
                         android:layout_weight="0"
+                        android:background="@android:color/transparent"
                         android:ems="10"
+
+                        android:gravity="center"
                         android:textColor="@color/white"
-                        android:textSize="14sp"
-                        android:inputType="date"
+
+                        android:textSize="10sp"
                         tools:ignore="SpeakableTextPresentCheck" />
                 </LinearLayout>
             </LinearLayout>
